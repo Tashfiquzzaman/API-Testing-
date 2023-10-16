@@ -1,7 +1,7 @@
 # API-Testing
 ## 🚀 Students_details API Testing Collection
 # Content    
-- [Introduction](https://github.com/Tashfiquzzaman/API-Testing#introduction)    
+- [Introduction](https://github.com/Tashfiquzzaman/API-Testing#Introduction)    
 - [Requirements](https://github.com/Tashfiquzzaman/API-Testing#requirements)      
 - [Assertions Details](https://github.com/Tashfiquzzaman/API-Testing#assertions-details)   
   - [Create A Student](https://github.com/Tashfiquzzaman/API-Testing#Create-A-Student)   
