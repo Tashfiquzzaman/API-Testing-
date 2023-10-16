@@ -1,0 +1,50 @@
+     var jsondata= pm.response.json()
+     pm.test("Status code is 200 OK", function () {
+     pm.response.to.have.status(200);
+     });
+
+     // Language 1  Value Validation
+     pm.test("Language check 1",function(){
+        pm.expect(jsondata.data.TechnicalDetails[0].language[0]).to.eql(pm.environment.get("language_1"))
+     })
+     //// Language 2  Value Validation
+
+     pm.test("Language check 2",function(){
+        pm.expect(jsondata.data.TechnicalDetails[0].language[1]).to.eql(pm.environment.get("language_2"))
+     })
+
+     //Year of Experience
+     pm.test("Year of Experience check",function(){
+        pm.expect(jsondata.data.TechnicalDetails[0].yearexp).to.eql(pm.environment.get("YrarExp"))
+     })
+
+     // House Number Validation
+     pm.test("House Number Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("23023 Asa Spurs"))
+     })
+
+     
+     // city name validation
+     pm.test("Student's City Name Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("Rolfsonstad"))
+     })
+    
+    // Studenr Country name Validation
+     pm.test("Studenr Country name Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("Sudan"))
+     })
+
+     // Studenr Mobile Number Validation
+     pm.test("Studenr Mobile Number Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("337-995-8976"))
+        })
+
+
+        // Studenr Current Address Validation
+        pm.test( "Studenr Current Address Validation",function(){
+        pm.expect(jsondata.Address).to.eql(pm.environment.get("76034 Zemlak Way"))
+        })
+
+
+
+    

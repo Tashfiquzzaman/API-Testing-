@@ -1,0 +1,34 @@
+var first_name=pm.environment.replaceIn("{{$randomFirstName}}")
+pm.environment.set("Student_fname",first_name)
+
+var middle_name=pm.environment.replaceIn("{{$randomNamePrefix}}")
+pm.environment.set("Student_Mname",middle_name)
+
+var last_name=pm.environment.replaceIn("{{$randomLastName}}")
+pm.environment.set("Student_lname",last_name)
+
+
+var House_Number=pm.environment.replaceIn("{{$randomStreetAddress}}")
+pm.environment.set("Student_House_No",House_Number)
+
+
+var City=pm.environment.replaceIn("{{$randomCity}}")
+pm.environment.set("Student_City_Name",City)
+
+
+var Country=pm.environment.replaceIn("{{$randomCountry}}")
+pm.environment.set("Student_Country_Name",Country)
+
+var Mobile=pm.environment.replaceIn("{{$randomPhoneNumber}}")
+pm.environment.set("Student_Mobile_Number",Mobile)
+
+
+var CurrentAddress=pm.environment.replaceIn("{{$randomStreetAddress}}")
+pm.environment.set("Student_Current_Address",CurrentAddress)
+
+
+
+
+const moment=require ('moment')
+const today=moment()
+pm.environment.set("Student_DOB",today.format("YYYY-MM-DD"))

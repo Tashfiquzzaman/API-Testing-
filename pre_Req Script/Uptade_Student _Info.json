@@ -1,0 +1,14 @@
+ var language1=pm.environment.replaceIn("{{$randomCity}}")
+pm.environment.set("language_1",language1)
+
+var language2=pm.environment.replaceIn("{{$randomStreetName}}")
+pm.environment.set("language_2",language2)
+
+var yearexp=pm.environment.replaceIn("{{$randomInt}}")
+pm.environment.set("YrarExp",yearexp)
+
+var lastused=pm.environment.replaceIn("{{$randomCreditCardMask}}")
+pm.environment.set("Lastused",lastused)
+
+var status=pm.environment.replaceIn("{{$randomBoolean}}")
+pm.environment.set("status",status)

@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "5ac2ad14-c12d-4c31-a5fb-77ca2de7ca0a",
+		"name": "Stduent_Details",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29102069",
+		"_collection_link": "https://crimson-sunset-911088.postman.co/workspace/SQA20~010aa1b5-3aa0-485f-beb4-65800e348b36/collection/29102069-5ac2ad14-c12d-4c31-a5fb-77ca2de7ca0a?action=share&source=collection_link&creator=29102069"
+	},
+	"item": [
+		{
+			"name": "Get_Students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondata= pm.response.json()\r",
+							"console.log(\"The length is\" + \" \" + jsondata.length)\r",
+							"\r",
+							"//test case\r",
+							"     var statuscode= pm.response.code\r",
+							"     if (statuscode==200){\r",
+							"     var jsondata=pm.response.json()\r",
+							"     pm.test(\"Check status Code\", function(){\r",
+							"        pm.response.to.have.status(200);\r",
+							"     });\r",
+							"     }\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{Exam_Base_Url}}/api/studentsDetails"
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Student",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var first_name=pm.environment.replaceIn(\"{{$randomFirstName}}\")\r",
+							"pm.environment.set(\"Student_fname\",first_name)\r",
+							"\r",
+							"var middle_name=pm.environment.replaceIn(\"{{$randomNamePrefix}}\")\r",
+							"pm.environment.set(\"Student_Mname\",middle_name)\r",
+							"\r",
+							"var last_name=pm.environment.replaceIn(\"{{$randomLastName}}\")\r",
+							"pm.environment.set(\"Student_lname\",last_name)\r",
+							"\r",
+							"\r",
+							"var House_Number=pm.environment.replaceIn(\"{{$randomStreetAddress}}\")\r",
+							"pm.environment.set(\"Student_House_No\",House_Number)\r",
+							"\r",
+							"\r",
+							"var City=pm.environment.replaceIn(\"{{$randomCity}}\")\r",
+							"pm.environment.set(\"Student_City_Name\",City)\r",
+							"\r",
+							"\r",
+							"var Country=pm.environment.replaceIn(\"{{$randomCountry}}\")\r",
+							"pm.environment.set(\"Student_Country_Name\",Country)\r",
+							"\r",
+							"var Mobile=pm.environment.replaceIn(\"{{$randomPhoneNumber}}\")\r",
+							"pm.environment.set(\"Student_Mobile_Number\",Mobile)\r",
+							"\r",
+							"\r",
+							"var CurrentAddress=pm.environment.replaceIn(\"{{$randomStreetAddress}}\")\r",
+							"pm.environment.set(\"Student_Current_Address\",CurrentAddress)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"const moment=require ('moment')\r",
+							"const today=moment()\r",
+							"pm.environment.set(\"Student_DOB\",today.format(\"YYYY-MM-DD\"))\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var A=pm.response.json()\r",
+							"pm.environment.set(\"Student_Create_ID\",A.id);\r",
+							"\r",
+							"// testcase \r",
+							"var statuscode= pm.response.code\r",
+							"     if (statuscode==201){\r",
+							"     var jsondata=pm.response.json()\r",
+							"     pm.test(\"Check status Code\", function(){\r",
+							"        pm.response.to.have.status(201);\r",
+							"     });\r",
+							"     }"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"first_name\": \"{{Student_fname}}\", \r\n  \"middle_name\": \"{{Student_Mname}}\", \r\n  \"last_name\": \"{{Student_lname}}\", \r\n  \"date_of_birth\": \"{{Student_DOB}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{Exam_Base_Url}}/api/studentsDetails"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_Specific_Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"     var statuscode= pm.response.code\r",
+							"     if (statuscode==200){\r",
+							"     var jsondata=pm.response.json()\r",
+							"     pm.test(\"Check status Code\", function(){\r",
+							"        pm.response.to.have.status(200);\r",
+							"     });\r",
+							"        \r",
+							"        //Student ID Validation Test case\r",
+							"        \r",
+							"         let Studentid=[]\r",
+							"         for(i=0;i<jsondata.length;i++)\r",
+							"         {\r",
+							"          Studentid[i]=jsondata[i].id\r",
+							"          }\r",
+							"          pm.test(\"Student ID check\",function(){\r",
+							"              pm.expect(jsondata.Studentid).to.eql(pm.environment.get(Studentid))\r",
+							"              })\r",
+							"\r",
+							"              //Student firstname validation teat case\r",
+							"\r",
+							"              let Studentfirstname=[]\r",
+							"              for(i=0;i<jsondata.length;i++)\r",
+							"              {\r",
+							"                  Studentfirstname[i]=jsondata[i].first_name\r",
+							"                  }\r",
+							"                  pm.test(\"Student First Name check\",function(){\r",
+							"                      pm.expect(jsondata.Student_fname).to.eql(pm.environment.get(Studentfirstname))\r",
+							"                      })\r",
+							"                    \r",
+							"                    // Student MID name validation\r",
+							"\r",
+							"\r",
+							"                      let StudentMidname=[]\r",
+							"                      for(i=0;i<jsondata.length;i++){\r",
+							"                          StudentMidname[i]=jsondata[i].middle_name\r",
+							"                          }\r",
+							"                          pm.test(\"Student Middel Name check\",function(){\r",
+							"                              pm.expect(jsondata.Student_Mname).to.eql(pm.environment.get(StudentMidname))\r",
+							"                              })\r",
+							"             \r",
+							"                   //Student Last name check\r",
+							"                  \r",
+							"                   let Studentlastname=[]\r",
+							"                      for(i=0;i<jsondata.length;i++){\r",
+							"                         Studentlastname[i]=jsondata[i].last_name\r",
+							"                          }\r",
+							"                          pm.test(\"Student Last name check\",function(){\r",
+							"                              pm.expect(jsondata.last_name).to.eql(pm.environment.get(Studentlastname))\r",
+							"                              })\r",
+							"\r",
+							"\r",
+							"                 //Student houseNo validation teat case\r",
+							"\r",
+							"              let StudentHouseNo=[]\r",
+							"              for(i=0;i<jsondata.length;i++)\r",
+							"              {\r",
+							"                  StudentHouseNo[i]=jsondata[i].House_Number\r",
+							"                  }\r",
+							"                  pm.test(\"Student House_Number check\",function(){\r",
+							"                      pm.expect(jsondata.Student_fname).to.eql(pm.environment.get(StudentHouseNo))\r",
+							"                      })\r",
+							"\r",
+							"\r",
+							"                let StudentCity=[]\r",
+							"              for(i=0;i<jsondata.length;i++)\r",
+							"              {\r",
+							"                  StudentCity[i]=jsondata[i].City\r",
+							"                  }\r",
+							"                  pm.test(\"Student City Name check\",function(){\r",
+							"                      pm.expect(jsondata.Student_fname).to.eql(pm.environment.get(StudentCity))\r",
+							"                      })\r",
+							"\r",
+							"                \r",
+							"                // DOB check\r",
+							"                \r",
+							"                  pm.test(\"Student Date of Birth check\",function(){\r",
+							"                  pm.expect(jsondata.date_of_birth).to.eql(pm.environment.get(\"2023-09-04\"))\r",
+							"                                   })}\r",
+							"\r",
+							"\r",
+							"                    \r",
+							"                    else if(statuscode==404){\r",
+							"         pm.test(\" Bad Request\",function(){\r",
+							"         pm.response.to.have.status(404)\r",
+							"     })\r",
+							"        }\r",
+							"        else if(statuscode==401){\r",
+							"            pm.test(\"Unauthorized\",function(){\r",
+							"                pm.response.to.have.status(401)\r",
+							"     })\r",
+							"        }\r",
+							"         else if(statuscode==403){\r",
+							"            pm.test(\"Forbidden\",function(){\r",
+							"                pm.response.to.have.status(403)\r",
+							"     })\r",
+							"        }\r",
+							"        else if(statuscode==405){\r",
+							"            pm.test(\"Not Found\",function(){\r",
+							"                pm.response.to.have.status(405)\r",
+							"     })\r",
+							"        }\r",
+							"        else(\"Somthing worng...\")\r",
+							"           \r",
+							"     "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{Exam_Base_Url}}/api/studentsDetails/{{Student_Create_ID}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Technical_Skills",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var statuscode= pm.response.code\r",
+							"     if (statuscode==200){\r",
+							"     var jsondata=pm.response.json()\r",
+							"     pm.test(\"Check status Code\", function(){\r",
+							"        pm.response.to.have.status(200);\r",
+							"     });\r",
+							"     }\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"/* var language1=pm.environment.replaceIn(\"{{$randomCity}}\")\r",
+							"pm.environment.set(\"language_1\",language1)\r",
+							"\r",
+							"var language2=pm.environment.replaceIn(\"{{$randomStreetName}}\")\r",
+							"pm.environment.set(\"language_2\",language2)\r",
+							"\r",
+							"var yearexp=pm.environment.replaceIn(\"{{$randomInt}}\")\r",
+							"pm.environment.set(\"YrarExp\",yearexp)\r",
+							"\r",
+							"var lastused=pm.environment.replaceIn(\"{{$randomCreditCardMask}}\")\r",
+							"pm.environment.set(\"Lastused\",lastused)\r",
+							"\r",
+							"var status=pm.environment.replaceIn(\"{{$randomBoolean}}\")\r",
+							"pm.environment.set(\"status\",status)\r",
+							"\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n  \"id\": 1,\r\n  \"language\": [\r\n    \"{{language_1}}\",\r\n    \"{{language_2}}\"\r\n  ],\r\n  \"yearexp\": \"{{YrarExp}}\",\r\n  \"lastused\": \"{{lastused}}\",\r\n  \"st_id\": \"{{Student_Create_ID}}\",\r\n  \"Address\": [\r\n    {\r\n      \"Permanent_Address\": {\r\n        \"House_Number\": \"{{Student_House_No}}\",\r\n        \"City\": \"{{Student_City_Name}}\",\r\n        \"State\": \"sample string 3\",\r\n        \"Country\": \"{{Student_Country_Name}}\",\r\n        \"PhoneNumber\": [\r\n          {\r\n            \"Std_Code\": \"101020\",\r\n            \"Home\": \"Dhaka\",\r\n            \"Mobile\": \"{{Student_Mobile_Number}}\"\r\n          },\r\n          {\r\n            \"Std_Code\": \"sample string 1\",\r\n            \"Home\": \"{{Student_Current_Address}}\",\r\n            \"Mobile\": \"sample string 3\",\r\n            \"Current_Address\": \"{{Student_Current_Address}}\"\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{Exam_Base_Url}}/api/technicalskills"
+			},
+			"response": []
+		},
+		{
+			"name": "FINAL_STUDENT_DETAILS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"     var jsondata= pm.response.json()\r",
+							"     pm.test(\"Status code is 200 OK\", function () {\r",
+							"     pm.response.to.have.status(200);\r",
+							"     });\r",
+							"\r",
+							"     // Language 1  Value Validation\r",
+							"     pm.test(\"Language check 1\",function(){\r",
+							"        pm.expect(jsondata.data.TechnicalDetails[0].language[0]).to.eql(pm.environment.get(\"language_1\"))\r",
+							"     })\r",
+							"     //// Language 2  Value Validation\r",
+							"\r",
+							"     pm.test(\"Language check 2\",function(){\r",
+							"        pm.expect(jsondata.data.TechnicalDetails[0].language[1]).to.eql(pm.environment.get(\"language_2\"))\r",
+							"     })\r",
+							"\r",
+							"     //Year of Experience\r",
+							"     pm.test(\"Year of Experience check\",function(){\r",
+							"        pm.expect(jsondata.data.TechnicalDetails[0].yearexp).to.eql(pm.environment.get(\"YrarExp\"))\r",
+							"     })\r",
+							"\r",
+							"     // House Number Validation\r",
+							"     pm.test(\"House Number Validation\",function(){\r",
+							"        pm.expect(jsondata.Address).to.eql(pm.environment.get(\"23023 Asa Spurs\"))\r",
+							"     })\r",
+							"\r",
+							"     \r",
+							"     // city name validation\r",
+							"     pm.test(\"Student's City Name Validation\",function(){\r",
+							"        pm.expect(jsondata.Address).to.eql(pm.environment.get(\"Rolfsonstad\"))\r",
+							"     })\r",
+							"    \r",
+							"    // Studenr Country name Validation\r",
+							"     pm.test(\"Studenr Country name Validation\",function(){\r",
+							"        pm.expect(jsondata.Address).to.eql(pm.environment.get(\"Sudan\"))\r",
+							"     })\r",
+							"\r",
+							"     // Studenr Mobile Number Validation\r",
+							"     pm.test(\"Studenr Mobile Number Validation\",function(){\r",
+							"        pm.expect(jsondata.Address).to.eql(pm.environment.get(\"337-995-8976\"))\r",
+							"        })\r",
+							"\r",
+							"\r",
+							"        // Studenr Current Address Validation\r",
+							"        pm.test( \"Studenr Current Address Validation\",function(){\r",
+							"        pm.expect(jsondata.Address).to.eql(pm.environment.get(\"76034 Zemlak Way\"))\r",
+							"        })\r",
+							"\r",
+							"\r",
+							"\r",
+							"    "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{Exam_Base_Url}}/api/FinalStudentDetails/{{Student_Create_ID}}"
+			},
+			"response": []
+		}
+	]
+}
