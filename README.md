@@ -4,11 +4,11 @@
 - [Introduction](https://github.com/Tashfiquzzaman/API-Testing#introduction)    
 - [Requirements](https://github.com/Tashfiquzzaman/API-Testing#requirements)      
 - [Assertions Details](https://github.com/Tashfiquzzaman/API-Testing#assertions-details)   
-  - [Create User](https://github.com/Tashfiquzzaman/API-Testing#create-user)   
-  - [GenerateToken](https://github.com/Tashfiquzzaman/API-Testing#generatetoken)   
-  - [Authorized](https://github.com/Tashfiquzzaman/API-Testing#authorized)   
-  - [Student List](https://github.com/Tashfiquzzaman/API-Testing#Student-list)   
-  - [Update Student Information](https://github.com/Tashfiquzzaman/API-Testing#Update-Student-Information)    
+  - [Create A Student](https://github.com/Tashfiquzzaman/API-Testing#Create-A-Student)   
+  - [TokenGenerate](https://github.com/Tashfiquzzaman/API-Testing#TokenGenerate)   
+  - [Authorized](https://github.com/Tashfiquzzaman/API-Testing#Authorized)   
+  - [Student info Validation](https://github.com/Tashfiquzzaman/API-Testing#Student-info-Validation)   
+  - [Technical_Skills Add ](https://github.com/Tashfiquzzaman/API-Testing#Technical-Skills-Add )    
   - [Student Final Information](https://github.comTashfiquzzaman/API-Testing#Student-Final-Information)      
   - [Summary](https://github.com/Tashfiquzzaman/API-Testing#summery)    
 
@@ -60,7 +60,7 @@ const today=moment()
 pm.environment.set("Student_DOB",today.format("YYYY-MM-DD"))
 });
 ```  
-#### GenerateToken    
+#### TokenGenerate 
 ```bash   
 // set environment token
 var jsonData = pm.response.json();
