@@ -2,7 +2,6 @@
 ## 🚀 Students_details API Testing Collection
 # Content    
 - [Introduction](https://github.com/Tashfiquzzaman/API-Testing#introduction)    
-     
 - [Requirements](https://github.com/Tashfiquzzaman/API-Testing#requirements)      
 - [Assertions Details](https://github.com/Tashfiquzzaman/API-Testing#assertions-details)   
   - [Create User](https://github.com/Tashfiquzzaman/API-Testing#create-user)   
@@ -11,24 +10,10 @@
   - [Student List](https://github.com/Tashfiquzzaman/API-Testing#Student-list)   
   - [Update Student Information](https://github.com/Tashfiquzzaman/API-Testing#Update-Student-Information)    
   - [Student Final Information](https://github.comTashfiquzzaman/API-Testing#Student-Final-Information)      
-   - [Summary](https://github.com/Tashfiquzzaman/API-Testing#summery)    
+  - [Summary](https://github.com/Tashfiquzzaman/API-Testing#summery)    
 
 # Introduction
 This document explains how to run an API test with Postman against a Swagger UI site.    
-
-# Summery    
-I have Completed an API test of the Student Information Site.   
-https://thetestingworldapi.com/swagger/#/     
-<p align="center">
-  <img src="https://github.com/Tashfiquzzaman/API-Testing-/blob/78bf08dbda7dcb096d6a50edbb8becd8eb7020f9/Report/Capture.JPG" />
-</p>
- 
-
-Here in this API new books were orderd list of books were viewed and different tests were performed like GET, POST, PUT,DELETE.
-
-**Summary:** Test Scripts 11 and Total 24 assertions were done. All of them passed with 0 skipped tests. The number of iteration was 1.
-
-
 
 # Requirements  
 **Java**  
@@ -37,8 +22,6 @@ https://www.oracle.com/java/technologies/downloads/
 https://www.postman.com/   
 **Node JS**   
 https://nodejs.org/en/    
-
-
 
 # Assertions Details    
 #### Create User         
@@ -200,6 +183,17 @@ pm.test("Status code is 204", function () {
     pm.response.to.have.status(204);
 });
 ```
+# Summery    
+I have Completed an API test of the Student Information Site.   
+https://thetestingworldapi.com/swagger/#/     
+<p align="center">
+  <img src="https://github.com/Tashfiquzzaman/API-Testing-/blob/78bf08dbda7dcb096d6a50edbb8becd8eb7020f9/Report/Capture.JPG" />
+</p>
+ 
+Here in this API new books were orderd list of books were viewed and different tests were performed like GET, POST, PUT,DELETE.
+
+**Summary:** Test Scripts 11 and Total 24 assertions were done. All of them passed with 0 skipped tests. The number of iteration was 1.
+
 
 # Create Test Suites   
 
