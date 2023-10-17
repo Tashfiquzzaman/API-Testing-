@@ -109,6 +109,7 @@ pm.environment.set("status",status)
 ```
 ## Student Final Information<a name="student-final-information"></a>
 ...
+```bash
      var jsondata= pm.response.json()
      pm.test("Status code is 200 OK", function () {
      pm.response.to.have.status(200);
