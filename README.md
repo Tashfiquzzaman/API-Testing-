@@ -69,7 +69,7 @@ pm.environment.set("token", jsonData.token);
 ```    
 
 ## Authorized<a name="authorized"></a>
-
+...
 #### Authorized  
 ```bash
 // Expected status code and response status code same or not
@@ -88,7 +88,8 @@ pm.test("Status code is 200", function () {
 ```
 ## Technical_Skills Add<a name="technical-skills-add"></a>
 
-#### Technical_Skills Add    
+#### Technical_Skills Add  
+...
 ```bash
 // set Student _Technical_Skills 
  var language1=pm.environment.replaceIn("{{$randomCity}}")
@@ -107,7 +108,7 @@ var status=pm.environment.replaceIn("{{$randomBoolean}}")
 pm.environment.set("status",status)
 ```
 ## Student Final Information<a name="student-final-information"></a>
-
+...
      var jsondata= pm.response.json()
      pm.test("Status code is 200 OK", function () {
      pm.response.to.have.status(200);
@@ -156,7 +157,7 @@ pm.environment.set("status",status)
         })
 
 #### Delete User   
-
+...
 ```bash
 // Expected status code and response status code same or not
 
@@ -177,21 +178,8 @@ Test Scripts 5 and a Total 20 assertions were done. All of them passed with 0 sk
 ```bash
 npm install -g newman    
 ```
-#### Run Command    
-- newman run “Path/CollectionName.json” -e Path/EnvironmentName.json
-- newman run “Collection Link” -e “Path”/EnvironmentName.json    
-
-#### Create HTML Report  
- 
-#### Install Command      
-```bash
-npm install -g newman-reporter-html
-```
-**or**   
-```bash
-npm install -g newman-reporter-htmlextra    
-```
+#### Create HTML Report        
 #### Run Command      
-- newman run “Collection Name” -e “Path”/EnvironmentName.json -r cli,html    
+- newman run “Collection Name”.json -e "EnvironmentName".json -r cli,html    
 **or**    
-- newman run “Collection Name” -e “Path”/EnvironmentName.json -r cli,htmlextra    
+- newman run “Collection Name” -e “EnvironmentName".json -r cli,htmlextra    
